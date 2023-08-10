@@ -1,0 +1,41 @@
+<style>
+  body {
+    --cursorHPosition: 50%;
+    --cursorVPosition: 50%;
+  }
+
+  .radial-gradient {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100vmax;
+    width: 100vmax;
+
+    /*Fallback if gradients don't work */
+    background: cornflowerblue;
+    /*Linear gradient... */
+    background:
+      radial-gradient(at center, #47eea5, cornflowerblue);
+
+
+    background: radial-gradient(at var(--cursorHPosition) var(--cursorVPosition), #47eea5, cornflowerblue);
+  }
+</style>
+<div class="radial-gradient"></div>
+<script>
+  /* This is a modified version of https://codepen.io/lsammarco/pen/waMpJw 
+  It uses javascript instead of jquery.
+  And modifies the values of the custom properties to change the X Y of the center of the radial gradient*/
+
+  document.documentElement.addEventListener('mousemove', (e) => {
+    windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
+
+    mouseXpercentage = Math.round(e.pageX / windowWidth * 100);
+    mouseYpercentage = Math.round(e.pageY / windowHeight * 100);
+
+    document.body.style.setProperty('--cursorHPosition', mouseXpercentage + '%')
+    document.body.style.setProperty('--cursorVPosition', mouseYpercentage + '%')
+  })
+
+</script>
